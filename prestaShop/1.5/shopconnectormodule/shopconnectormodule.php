@@ -250,7 +250,7 @@ class ShopConnectorModule extends Module {
 		$cart = Context::getContext()->cart;
 		$customer = new Customer($cart->id_customer); //DEFINICJA PODSTAWOWYCH DANYCH ZALOGOWANEGO UŻYTKOWNIKA - PRESTA CODE
                 
-        if($sendEmail){
+        if($sendEmail == true){
 			$from2 = array($shopName => "oszczedzaj@shopconnector.pl");
 			$to2 = array($customer->firstname." ".$customer->lastname => $customer->email);
 			$subject2 = "Następne zakupy w $shopName i innych sklepach mogą być tańsze!";

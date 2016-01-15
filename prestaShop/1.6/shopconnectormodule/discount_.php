@@ -11,7 +11,7 @@
 		define("HASH", Configuration::get('SHOPCONNECTORMODULE_HASH')); //UNIKALNY HASH KAŻDEGO PARTNERA
 		include_once("check_coupon_client.php");
 		
-                $cart = Context::getContext()->cart;
+		$cart = Context::getContext()->cart;
 
 		$discountName = $_REQUEST['discount_name']; //POBRANIE KODU Z GET LUB POST
 		$customer = new Customer($cart->id_customer); //DEFINICJA PODSTAWOWYCH DANYCH ZALOGOWANEGO UŻYTKOWNIKA - PRESTA CODE
@@ -107,7 +107,7 @@
 			$cookieset = true;
 		}
 
-		if($cookieset) setcookie("shopconnector_coupon", json_encode($sc_cookie), time()+3600*24);
+		if($cookieset) setcookie("shopconnector_coupon", json_encode($sc_cookie), time()+3600*24, '/');
 	}elseif(!isset($_COOKIE['shopconnector_coupon'])){
 
 		$customer = new Customer($cart->id_customer); //DEFINICJA PODSTAWOWYCH DANYCH ZALOGOWANEGO UŻYTKOWNIKA - PRESTA CODE
@@ -122,7 +122,7 @@
 			$cookieset = true;
 		}
 
-		if($cookieset) setcookie("shop_user_info", json_encode($sc_cookie), time()+3600*24);
+		if($cookieset) setcookie("shop_user_info", json_encode($sc_cookie), time()+3600*24, '/');
 	}
 
 ?>

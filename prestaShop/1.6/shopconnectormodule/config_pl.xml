@@ -2,7 +2,7 @@
 <module>
 	<name>shopconnectormodule</name>
 	<displayName><![CDATA[Moduł ShopConnector dla PrestaShop]]></displayName>
-	<version><![CDATA[1.0.5]]></version>
+	<version><![CDATA[1.0.6]]></version>
 	<description><![CDATA[Integracja z platformą rabatową shopconnector.pl (walidacja kod&oacute;w rabatowych, wyświetlanie personalizowanych pop-up&oacute;w). Zdobędziesz nowych klient&oacute;w z innych sklep&oacute;w internetowych i nagrodzisz własną bazę klient&oacute;w. Dowiesz się co Twoi klienci robią poza Twoim sklepem.]]></description>
 	<author><![CDATA[ShopConnector]]></author>
 	<tab><![CDATA[pricing_promotion]]></tab>

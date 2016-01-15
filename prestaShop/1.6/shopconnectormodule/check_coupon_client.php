@@ -170,12 +170,11 @@ class CheckCouponClient {
         $data_from_server =  $this->_decryptString(base64_decode($json_data->data),$hash);
         $data_from_server = str_replace("\0", "", $data_from_server);
         $json_response = json_decode($data_from_server);
-		
-		//echo '<pre>';
-		//print_r($json_response);
-		//echo '</pre>';
-		//die;
-		
+		$this->showPopup = $json_response->showPopup;
+		$this->showBanner = $json_response->showBanner;
+		$this->sendEmail = $json_response->sendEmail;
+		$this->scShopId = $json_response->scShopId;
+
         $myfile = fopen("response_from_server.txt", "w") or die("Unable to open file!");
         $txt = "$response\n";
         fwrite($myfile, $txt);
@@ -187,10 +186,7 @@ class CheckCouponClient {
         fclose($myfile);
 
         if($json_response->status == 1) {
-			$this->showPopup = $json_response->showPopup;
-			$this->showBanner = $json_response->showBanner;
-			$this->sendEmail = $json_response->sendEmail;
-			$this->scShopId = $json_response->scShopId;
+			
             // if (session_status() == PHP_SESSION_NONE) {
             session_start();
             // }
@@ -202,6 +198,7 @@ class CheckCouponClient {
         } else {
             $this->minCart = $json_response->minCart;
             $this->couponType = $json_response->couponType;
+			
             return $json_response->details;
             //return false;
         }
@@ -223,13 +220,17 @@ class CheckCouponClient {
         $data_from_server = str_replace("\0", "", $data_from_server);
         $json_response = json_decode($data_from_server);
         $this->emailTemplate = $json_response->email;
+		$this->showPopup = $json_response->showPopup;
+		$this->showBanner = $json_response->showBanner;
+		$this->sendEmail = $json_response->sendEmail;
+		$this->scShopId = $json_response->scShopId;
 		
 		$myfile = fopen("data_from_server.txt", "w") or die("Unable to open file!");
         $txt = "$data_from_server\n";
         fwrite($myfile, $txt);
         fclose($myfile);
         if($json_response->status == 1) {
-			$this->sendEmail = $json_response->sendEmail;
+			
             // if (session_status() == PHP_SESSION_NONE) {
                 session_start();
             // }

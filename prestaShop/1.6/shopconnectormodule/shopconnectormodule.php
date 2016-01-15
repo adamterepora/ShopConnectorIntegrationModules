@@ -8,7 +8,7 @@ class ShopConnectorModule extends Module {
     {
         $this->name = 'shopconnectormodule';
         $this->tab = 'pricing_promotion';
-        $this->version = '1.0.5';
+        $this->version = '1.0.6';
         $this->author = 'ShopConnector';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_); 
@@ -140,16 +140,21 @@ class ShopConnectorModule extends Module {
 		$cookieDecoded = str_replace('\"','"',(string)$cookieDecoded);
 		$sc_cookie = json_decode($cookieDecoded);
 		$discountName = $sc_cookie->discount_coupon;
+		$showPopup = $sc_cookie->showPopup;
+		$showBanner = $sc_cookie->showBanner;
+		$scShopId = $sc_cookie->scShopId;
 		$cart_value = $sc_cookie->cart_value;
 		$coupon = new CheckCouponClient($discountName);
 		$couponData = $coupon->setCartValue($cart_value); 
 		$couponData = $coupon->confirm($hash);
 		$couponEmail= $coupon->getEmailTemplate();
 		$sendEmail = $coupon->getSendEmail();
+		$scShopId = $coupon->getScShopId();
 
-		if($couponData) {
+		setcookie("scShopId", $scShopId, time()+3600*24, "/");
+
+		if($couponData === true) {
 			setcookie("shopconnector_info_cookie", "correct", time()+3600*24, "/");
-			setcookie("shopconnector_info_cookie", "correct", time()+3600*24);
 		}else{
 			if($sendEmail == true){
 				try {
@@ -169,15 +174,12 @@ class ShopConnectorModule extends Module {
 				}
 			}
 			setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24, "/");
-			setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24);
 		}
 		unset($_COOKIE['shopconnector_coupon_presta']);
 		setcookie('shopconnector_coupon_presta', null, -1, '/');
-		setcookie('shopconnector_coupon_presta', null, -1);
 		if(isset($_COOKIE['shop_user_info'])){
 			unset($_COOKIE['shop_user_info']);
 			setcookie('shop_user_info', null, -1, '/');
-			setcookie('shop_user_info', null, -1);
 		}
 		// setcookie("shopconnector_info_cookie_confirmed", "send", time()+3600*24, "/");
 	} elseif(isset($_COOKIE['shopconnector_coupon'])) {
@@ -196,15 +198,15 @@ class ShopConnectorModule extends Module {
 		$couponData = $coupon->confirm($hash);
 		$couponEmail= $coupon->getEmailTemplate();
 		$sendEmail = $coupon->getSendEmail();
+		$showPopup = $coupon->getShowPopup();
+		$showBanner = $coupon->getShowBanner();
+		$scShopId = $coupon->getScShopId();
 
 		setcookie("scShopId", $scShopId, time()+3600*24, "/");
-		setcookie("scShopId", $sscShopId, time()+3600*24);
 
 		if($couponData) {
 			setcookie("shopconnector_info_cookie", "correct", time()+3600*24, "/");
-			setcookie("shopconnector_info_cookie", "correct", time()+3600*24);
 			setcookie("showPopup", $showPopup, time()+3600*24, "/");
-			setcookie("showPopup", $showPopup, time()+3600*24);
 		}else{
 			if($sendEmail){
 				try {
@@ -223,17 +225,13 @@ class ShopConnectorModule extends Module {
 				}
 			}
 			setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24, "/");
-			setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24);
 			setcookie("showPopup", $showPopup, time()+3600*24, "/");
-			setcookie("showPopup", $showPopup, time()+3600*24);
 		}
 		unset($_COOKIE['shopconnector_coupon']);
 		setcookie('shopconnector_coupon', null, -1, '/');
-		setcookie('shopconnector_coupon', null, -1);
 		if(isset($_COOKIE['shop_user_info'])){
 			unset($_COOKIE['shop_user_info']);
 			setcookie('shop_user_info', null, -1, '/');
-			setcookie('shop_user_info', null, -1);
 		}
 		// setcookie("shopconnector_info_cookie_confirmed", "send", time()+3600*24, "/");
 	}elseif(isset($_COOKIE['shop_user_info'])) {
@@ -247,8 +245,15 @@ class ShopConnectorModule extends Module {
 		$couponData = $coupon->confirm($hash);
 		$couponEmail= $coupon->getEmailTemplate();
 		$sendEmail = $coupon->getSendEmail();
-                
-		if($sendEmail){
+		$showPopup = $coupon->getShowPopup();
+		$showBanner = $coupon->getShowBanner();
+		$scShopId = $coupon->getScShopId();
+		
+		setcookie("showPopup", $showPopup, time()+3600*24, "/");
+		setcookie("showBanner", $showBanner, time()+3600*24, "/");
+		setcookie("scShopId", $scShopId, time()+3600*24, "/");
+		
+		if($sendEmail == true){
 			try {
 				$from2 = array($shopName => "oszczedzaj@shopconnector.pl");
 				$to2 = array($sc_cookie->firstname." ".$sc_cookie->lastname => $sc_cookie->email);
@@ -267,22 +272,27 @@ class ShopConnectorModule extends Module {
                 
 		unset($_COOKIE['shop_user_info']);
 		setcookie('shop_user_info', null, -1, '/');
-		setcookie('shop_user_info', null, -1);
 
 		setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24, "/");
-		setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24);
 	}else{
             
-                $coupon = new CheckCouponClient('empty');
+		$coupon = new CheckCouponClient('empty');
 		$couponData = $coupon->setCartValue("0"); 
 		$couponData = $coupon->confirm($hash);
 		$couponEmail= $coupon->getEmailTemplate();
 		$sendEmail = $coupon->getSendEmail();
+		$showPopup = $coupon->getShowPopup();
+		$showBanner = $coupon->getShowBanner();
+		$scShopId = $coupon->getScShopId();
+		
+		setcookie("showPopup", $showPopup, time()+3600*24, "/");
+		setcookie("showBanner", $showBanner, time()+3600*24, "/");
+		setcookie("scShopId", $scShopId, time()+3600*24, "/");
                 
-                $cart = Context::getContext()->cart;
+		$cart = Context::getContext()->cart;
 		$customer = new Customer($cart->id_customer); //DEFINICJA PODSTAWOWYCH DANYCH ZALOGOWANEGO UŻYTKOWNIKA - PRESTA CODE
                 
-		if($sendEmail){
+		if($sendEmail == true){
 			try{
 				$from2 = array($shopName => "oszczedzaj@shopconnector.pl");
 				$to2 = array($customer->firstname." ".$customer->lastname => $customer->email);
@@ -298,8 +308,7 @@ class ShopConnectorModule extends Module {
 			}
 		}
                 
-                setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24, "/");
-		setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24);
+		setcookie("shopconnector_info_cookie", "unknownUser", time()+3600*24, "/");
 	}
         
         $this->context->smarty->assign(
