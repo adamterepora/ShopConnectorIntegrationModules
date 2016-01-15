@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <ShopConnectorMagento_ShopConnectorPlugin>
+            <version>1.0.6</version>
+        </ShopConnectorMagento_ShopConnectorPlugin>
+    </modules>
+	<frontend>
+        <routers>
+            <checkout>
+                <use>standard</use>
+                <args>
+                    <modules>
+                        <ShopConnectorMagento_ShopConnectorPlugin before="Mage_Checkout">ShopConnectorMagento_ShopConnectorPlugin</ShopConnectorMagento_ShopConnectorPlugin>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <shopconnectorplugin>
+                                            <title>ShopConnector</title>
+                                        </shopconnectorplugin>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <tabs>
+        <ShopConnector translate="label">
+            <label>ShopConnector</label>
+            <sort_order>1</sort_order>
+        </ShopConnector>
+    </tabs>
+    <sections>
+        <shopconnectorplugin translate="label">
+            <label>Opcje ShopConnector</label>
+            <tab>ShopConnector</tab>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+ 
+            <groups>
+                <shopconnectormagento_group translate="label">
+                    <label>Opcje ShopConnector</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+ 
+                    <fields>
+                        <shopconnectormagento_input translate="label">
+                            <label>ApiKey z ShopConnector: </label>
+                            <comment>Wprowadź swój unikalny apikey dla tego sklepu</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shopconnectormagento_input>
+                    </fields>
+                </shopconnectormagento_group>
+            </groups>
+        </shopconnectorplugin>
+    </sections>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <module>
+            <name>shopconnectormodule</name>
+            <displayName><![CDATA[Moduł ShopConnector dla PrestaShop]]></displayName>
+            <version><![CDATA[1.0.6]]></version>
+            <description><![CDATA[Integracja z platformą rabatową shopconnector.pl (walidacja kod&oacute;w rabatowych, wyświetlanie personalizowanych pop-up&oacute;w). Zdobędziesz nowych klient&oacute;w z innych sklep&oacute;w internetowych i nagrodzisz własną bazę klient&oacute;w. Dowiesz się co Twoi klienci robią poza Twoim sklepem.]]></description>
+            <author><![CDATA[ShopConnector Adam Terepora]]></author>
+            <tab><![CDATA[pricing_promotion]]></tab>
+	<confirmUninstall>Are you sure you want to uninstall?</confirmUninstall>
+            <is_configurable>1</is_configurable>
+            <need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+        </module>

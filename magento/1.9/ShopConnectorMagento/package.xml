@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<package>
+    <name>ShopConnectorMagento</name>
+    <version>1.0.6</version>
+    <stability>stable</stability>
+    <license>GNU General Public License</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Extension for integration with ShopConnector</summary>
+    <description>Extension for integration with ShopConnector</description>
+    <notes>Extension for integration with ShopConnector</notes>
+    <authors>
+		<author>
+			<name>Konrad Seweryn</name>
+			<user>sevikon</user>
+			<email>sevikon@gmail.com</email>
+		</author>
+		<author>
+			<name>Adam Terepora</name>
+			<user>aterepora</user>
+			<email>adam@terepora.pl</email>
+		</author>
+	</authors>
+    <date>2015-10-20</date>
+    <time>10:00:15</time>
+    <contents>
+		<target name="magecommunity">
+			<dir name="ShopConnectorMagento">
+				<dir name="ShopConnectorPlugin">
+					<dir name="controllers">
+						<file name="CartController.php" hash="e78428f738bb294e6638a287658da611"/>
+						<file name="Mail.php" hash="5d355bd8ef35a7ca800dd81569f40905"/>
+						<file name="OnepageController.php" hash="c98628d269815ffd51aa40f7b60c10a7"/>
+						<file name="check_coupon_client.php" hash="4cf92f3a1be8375da41cfee8c87f9bdd"/>
+						<file name="discount_.php" hash="9d66c227b7465a2d9c3b73eeef7a5c87"/>
+						<file name="discount_confirm.php" hash="52d88f36dde96cc344d9d36ed37bff0b"/>
+					</dir>
+					<dir name="etc">
+						<file name="config.xml" hash="a22a6deac573ebcc973944b8d3cdcdaa"/>
+						<file name="system.xml" hash="aa22a6deac573ebcc973944b8d3cdcda"/>
+					</dir>
+				</dir>
+			</dir>
+		</target>
+		<target name="mageetc">
+			<dir name="modules">
+				<file name="ShopConnectorMagento_All.xml" hash="27ca2e2b8ab754e9939bdb580dbacb00"/>
+			</dir>
+		</target>
+	</contents>
+    <compatible/>
+    <dependencies><required><php><min>5.0.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
