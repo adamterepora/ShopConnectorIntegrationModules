@@ -112,13 +112,13 @@
 			$coupon = Mage::getModel('salesrule/coupon')->load($discountName, 'code');
 			$ress = $coupon->getRuleId();
 			//JEĹšLI KOD ISTNIEJE W SKLEPIE TO GO USUWAMY
-			if (!empty($ress)) {
+			/*if (!empty($ress)) {
 				$model = Mage::getModel('salesrule/rule')
 		        ->getCollection()
 		        ->addFieldToFilter('code', $discountName)
 		        ->getFirstItem();
 				$model->delete();
-			}
+			}*/
 			
 			if($sendEmail == true){
 				sendMagentoEmail($body, 'Następne zakupy w sklepie %s mogą być tańsze!', $lastOrderId);
